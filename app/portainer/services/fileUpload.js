@@ -91,28 +91,16 @@ angular.module('portainer.app').factory('FileUploadService', [
         data: {
           file: file,
           Name: stackName,
-          EdgeGroups: Upload.json(edgeGroups)
+          EdgeGroups: Upload.json(edgeGroups),
         },
-        ignoreLoadingBar: true
+        ignoreLoadingBar: true,
       });
     };
-  
 
     service.configureRegistry = function (registryId, registryManagementConfigurationModel) {
       return Upload.upload({
         url: 'api/registries/' + registryId + '/configure',
         data: registryManagementConfigurationModel,
-      });
-    };
-
-    service.executeEndpointJob = function (imageName, file, endpointId, nodeName) {
-      return Upload.upload({
-        url: 'api/endpoints/' + endpointId + '/job?method=file&nodeName=' + nodeName,
-        data: {
-          File: file,
-          Image: imageName,
-        },
-        ignoreLoadingBar: true,
       });
     };
 
